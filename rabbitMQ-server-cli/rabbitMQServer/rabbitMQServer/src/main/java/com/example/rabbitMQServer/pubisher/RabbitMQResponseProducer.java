@@ -15,13 +15,15 @@ public class RabbitMQResponseProducer {
     @Value("${rabbitmq.response.routing.key}")
     private String routingKey;
     private RabbitTemplate rabbitTemplate;
+    private  String response = "Response from server";
 
 
     public RabbitMQResponseProducer(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
-    public void sendResponse(User user){
-       log.info(String.format("Sending response in json{}->%s",user.toString()));
-    rabbitTemplate.convertAndSend(exchange,routingKey,user);
+    public void sendResponse(String message){
+       log.info("Sending response to client...");
+
+    rabbitTemplate.convertAndSend(exchange,routingKey,response);
     }
 }

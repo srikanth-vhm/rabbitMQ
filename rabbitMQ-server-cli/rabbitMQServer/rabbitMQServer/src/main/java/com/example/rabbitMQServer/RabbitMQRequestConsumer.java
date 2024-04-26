@@ -19,9 +19,9 @@ private RabbitMQResponseProducer rabbitMQResponseProducer;
 @RabbitListener(queues = {"${rabbitmq.request.queue.name}"})
     public void consume(String message){
     log.info(String.format("Received message request{}->%S",message));
-    User user= new User(11,message,"abc");
+   // User user= new User(11,message,"abc");
 
-    rabbitMQResponseProducer.sendResponse(user);
+    rabbitMQResponseProducer.sendResponse(message);
 
 }
 }
